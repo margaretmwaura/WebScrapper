@@ -2,13 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Vowel;
 use DOMDocument;
 use Illuminate\Console\Command;
 use Goutte\Client;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpClient\HttpClient;
-
-
 
 
 class ScrapeFrenchInfo extends Command
@@ -47,35 +45,48 @@ class ScrapeFrenchInfo extends Command
 
         $client = new Client();
         $crawler = $client->request('GET', 'https://www.rocketlanguages.com/french/lessons/french-alphabet');
-        $letters_array = [];
-        $crawler->filter('.output')->each(function ($node) use ($letters_array){
-            $content =  $node->text();
-            $word = $content[0];
-            array_push($letters_array,$word);
-            foreach ($letters_array as $letter)
-            {
-                print $letter . "\n";
-            }
-        });
         $html = file_get_contents('https://www.rocketlanguages.com/french/lessons/french-alphabet');
-
         $doc = new DOMDocument();
         @$doc->loadHTML($html);
-
         $tags = $doc->getElementsByTagName('audio');
-
+        $letters_array = array();
+        $description_array = array();
+        $filenames = [];
         foreach ($tags as $tag) {
             $url = $tag->getAttribute('src');
             echo $tag->getAttribute('src')."\n";
+            $urlParts = explode("/", $url);
+            print $urlParts[6]."\n";
             $ch = curl_init();
             $timeout = 5;
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
             $data = curl_exec($ch);
-            Storage::put('file.txt', $data);
+            Storage::disk('local')->put($urlParts[6], $data);
             curl_close($ch);
-            return ;
+            array_push($filenames,$urlParts[6]);
+        }
+        $crawler->filter('.output')->each(function ($node) use ($letters_array,$description_array){
+            $content = $node->text();
+            $word = explode(" " , $content);
+            echo $word[0]."\n";
+            echo $word[1]."\n";
+            array_push($letters_array,$word[0]);
+            print_r($letters_array);
+            array_push($description_array,$word[1]);
+            print_r($description_array);
+        });
+        dd($letters_array);
+        for ($i = 0 ; $i < count($filenames) ; $i++)
+        {
+            $vowel = new Vowel();
+            dd($letters_array);
+            $vowel->name = $letters_array[$i];
+            $vowel->description = $description_array[$i];
+            $vowel->filename = $filenames[$i];
+            $vowel->save();
+
         }
     }
 }
