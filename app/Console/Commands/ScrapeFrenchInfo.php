@@ -49,8 +49,23 @@ class ScrapeFrenchInfo extends Command
         $doc = new DOMDocument();
         @$doc->loadHTML($html);
         $tags = $doc->getElementsByTagName('audio');
-        $letters_array = array();
-        $description_array = array();
+        $description_array = [];
+        $letters_array = $crawler->filter('.output')->each(function ($node) {
+            return $letters[] = $node->text();
+        });
+        dd($letters_array);
+        $crawler->filter('.output')->each(function ($node) use ($letters_array,$description_array){
+            $content = $node->text();
+            $word = explode(" " , $content);
+            echo $word[0]."\n";
+            echo $word[1]."\n";
+            array_push($letters_array,$word[0]);
+            print_r($letters_array);
+            array_push($description_array,$word[1]);
+            print_r($description_array);
+            $letters_array[] = $word[0];
+            $description_array[] = $word[1];
+        });
         $filenames = [];
         foreach ($tags as $tag) {
             $url = $tag->getAttribute('src');
@@ -67,17 +82,6 @@ class ScrapeFrenchInfo extends Command
             curl_close($ch);
             array_push($filenames,$urlParts[6]);
         }
-        $crawler->filter('.output')->each(function ($node) use ($letters_array,$description_array){
-            $content = $node->text();
-            $word = explode(" " , $content);
-            echo $word[0]."\n";
-            echo $word[1]."\n";
-            array_push($letters_array,$word[0]);
-            print_r($letters_array);
-            array_push($description_array,$word[1]);
-            print_r($description_array);
-        });
-        dd($letters_array);
         for ($i = 0 ; $i < count($filenames) ; $i++)
         {
             $vowel = new Vowel();
