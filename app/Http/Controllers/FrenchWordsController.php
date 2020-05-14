@@ -18,7 +18,6 @@ class FrenchWordsController extends Controller
                 function ($vowel)
                 {
                     return[
-                        'id' => $vowel->id,
                         'name' => $vowel->name,
                         'description' => $vowel->description,
                         'filename' => $vowel->filename
