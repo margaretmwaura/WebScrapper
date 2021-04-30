@@ -4,6 +4,8 @@ This is a short php script that I wrote to scrap the french letters and sounds f
 
 ## Get started
 - Set up a database with a database table
+
+
    CREATE TABLE `vowels` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(200) DEFAULT NULL,
