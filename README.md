@@ -1,6 +1,6 @@
 ## The French Web Scrapper
 
-This is a short php script that I wrote to scrap the french letters and sounds from https://www.rocketlanguages.com/french/lessons/french-alphabet in order to get the data that I needed to work on a mobile application to make it easy to learn french
+This is a short php command that I wrote to scrap the french letters and sounds from https://www.rocketlanguages.com/french/lessons/french-alphabet in order to get the data that I needed to work on a mobile application to make it easy to learn french
 
 ## Get started
 - Set up a database with a database table
