@@ -16,6 +16,7 @@
         "fideloper/proxy": "^4.4",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^5.4",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "symfony/process": "^4.2"
     },
     "config": {

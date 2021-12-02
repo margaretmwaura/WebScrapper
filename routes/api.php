@@ -20,4 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('french_words', 'FrenchWordsController@index');
 
-Route::get('videos', 'FrenchWordsController@getAudio');
+Route::get('audio', 'FrenchWordsController@getAudio');
+
+Route::post('get_data', 'FrenchWordsController@getData');

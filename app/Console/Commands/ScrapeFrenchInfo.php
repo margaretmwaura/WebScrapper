@@ -112,7 +112,9 @@ class ScrapeFrenchInfo extends Command
 
             $data = curl_exec($ch);
 
-            Storage::disk('local')->put($urlParts[6], $data);
+//            dd($urlParts[6]);
+
+            Storage::disk('s3')->put($urlParts[6], $data);
 
             curl_close($ch);
 
