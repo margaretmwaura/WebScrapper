@@ -44,7 +44,15 @@ class FrenchWordsController extends Controller
 //
 //            BinaryFileResponse::trustXSendfileTypeHeader();
 //            return $response;
-            return Storage::disk('s3')->response(request('filename'));
+            $fileName = request('filename');
+
+            $assetPath = Storage::disk('s3')->get($fileName);
+
+            return response(base64_encode($assetPath), 200)
+                ->header('Content-Type', 'audio/mpeg')
+                ->header('Content-Disposition', 'attachment; filename="'.$fileName.'"')
+                ->header('Cache-Control', 'public');
+
         } catch (\Exception $e) {
             return response()->json(['error' => 'Problem with servers' . $e->getMessage()], 500);
         }
