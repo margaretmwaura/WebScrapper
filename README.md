@@ -39,4 +39,7 @@ https://www.youtube.com/watch?v=Ng_zi11N4_c
 
 -To get the vowels hit https://yc5l3py01m.execute-api.us-east-2.amazonaws.com/dev/api/french_words
 
--To get an audio file for a vowel hit https://yc5l3py01m.execute-api.us-east-2.amazonaws.com/dev/api/audio?filename=151831-1.6.a-normalized.mp3 while passing the audio file name. Important to note is that the audio file will be decoded hence one will need to encode it
+-To get an audio file for a vowel hit https://yc5l3py01m.execute-api.us-east-2.amazonaws.com/dev/api/audio?filename=151831-1.6.a-normalized.mp3 while passing the audio file name. Important to note is that the audio file will be decoded hence one will need to encode it in order to access it
+
+### Saving of audio files
+- When running on local the audio files will be saved in ones local storage
