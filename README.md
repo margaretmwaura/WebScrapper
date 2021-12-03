@@ -32,6 +32,7 @@ This is a short php command that I wrote to scrap the french letters and sounds 
 Below are resources that I used to do the setup.
 
 https://www.youtube.com/watch?v=rWExnXzUBqc
+
 https://www.youtube.com/watch?v=Ng_zi11N4_c
 
 To scrap the data hit https://yc5l3py01m.execute-api.us-east-2.amazonaws.com/dev/api/get_data
