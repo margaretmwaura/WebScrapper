@@ -46,7 +46,7 @@ class FrenchWordsController extends Controller
             if (\App::environment('local')) {
                 $assetPath = Storage::disk('local')->get($fileName);
             } else {
-            $assetPath = Storage::disk('s3')->get($fileName);
+                $assetPath = Storage::disk('s3')->get($fileName);
             }
 
             return response(base64_encode($assetPath), 200)

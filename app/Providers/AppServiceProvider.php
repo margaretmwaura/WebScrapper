@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         // Make sure the directory for compiled views exist
-        if (! is_dir(config('view.compiled'))) {
+        if (!is_dir(config('view.compiled'))) {
             mkdir(config('view.compiled'), 0755, true);
         }
     }

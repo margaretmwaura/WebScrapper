@@ -28,8 +28,8 @@ functions:
     layers:
       - ${bref:layer.php-73-fpm}
     events:
-      -   http: 'ANY /'
-      -   http: 'ANY /{proxy+}'
+      - http: 'ANY /'
+      - http: 'ANY /{proxy+}'
   artisan:
     handler: artisan
     timeout: 120 # in seconds

@@ -55,7 +55,7 @@ class ScrapeFrenchInfo extends Command
         //return the transfer as a string
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
 
         // $output contains the output string
         $html = curl_exec($ch);
@@ -80,13 +80,13 @@ class ScrapeFrenchInfo extends Command
             return $letters[] = $node->text();
 
         });
-        foreach($letters as $letter){
+        foreach ($letters as $letter) {
 
-            $single_letter = explode(" " , $letter);
+            $single_letter = explode(" ", $letter);
 
-            array_push($letters_array,$single_letter[0]);
+            array_push($letters_array, $single_letter[0]);
 
-            array_push($description_array,$single_letter[1]);
+            array_push($description_array, $single_letter[1]);
         }
         $filenames = [];
 
@@ -94,11 +94,11 @@ class ScrapeFrenchInfo extends Command
 
             $url = $tag->getAttribute('src');
 
-            echo $tag->getAttribute('src')."\n";
+            echo $tag->getAttribute('src') . "\n";
 
             $urlParts = explode("/", $url);
 
-            print $urlParts[6]."\n";
+            print $urlParts[6] . "\n";
 
             $ch = curl_init();
 
@@ -116,16 +116,15 @@ class ScrapeFrenchInfo extends Command
 
             if (\App::environment('local')) {
                 Storage::disk('local')->put($urlParts[6], $data);
-            }else{
+            } else {
                 Storage::disk('s3')->put($urlParts[6], $data);
             }
 
             curl_close($ch);
 
-            array_push($filenames,$urlParts[6]);
+            array_push($filenames, $urlParts[6]);
         }
-        for ($i = 0 ; $i < count($filenames) ; $i++)
-        {
+        for ($i = 0; $i < count($filenames); $i++) {
             $vowel = new Vowel();
 
             $vowel->name = $letters_array[$i];
