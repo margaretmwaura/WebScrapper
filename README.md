@@ -28,7 +28,7 @@ CREATE TABLE `vowels` (
 
 - The app is now hosted in production using AWS Lamda.
 - The data is now saved in AWS RDS whenever it is cloned allowing it to be accessed via the api gateway.
-- The audio files are saved in AWS buckets.
+- The audio files are saved in AWS s3 buckets.
 
 Below are resources that I used to do the setup.
 
