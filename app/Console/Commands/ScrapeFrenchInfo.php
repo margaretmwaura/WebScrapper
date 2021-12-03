@@ -114,7 +114,11 @@ class ScrapeFrenchInfo extends Command
 
 //            dd($urlParts[6]);
 
-            Storage::disk('s3')->put($urlParts[6], $data);
+            if (\App::environment(['local', 'staging'])) {
+                Storage::disk('local')->put($urlParts[6], $data);
+            }else{
+                Storage::disk('s3')->put($urlParts[6], $data);
+            }
 
             curl_close($ch);
 

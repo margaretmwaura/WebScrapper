@@ -46,7 +46,11 @@ class FrenchWordsController extends Controller
 //            return $response;
             $fileName = request('filename');
 
-            $assetPath = Storage::disk('s3')->get($fileName);
+            if (\App::environment(['local', 'staging'])) {
+                $assetPath = Storage::disk('local')->get($fileName);
+            }else{
+                $assetPath = Storage::disk('s3')->get($fileName);
+            }
 
             return response(base64_encode($assetPath), 200)
                 ->header('Content-Type', 'audio/mpeg')
