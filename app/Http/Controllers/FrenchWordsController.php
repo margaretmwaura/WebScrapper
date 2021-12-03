@@ -15,10 +15,9 @@ class FrenchWordsController extends Controller
     {
 //        return response()->download($vowels[0]['filename'], 200);
         try {
-           $vowels = Vowel::all()->map(
-                function ($vowel)
-                {
-                    return[
+            $vowels = Vowel::all()->map(
+                function ($vowel) {
+                    return [
                         'name' => $vowel->name,
                         'description' => $vowel->description,
                         'filename' => $vowel->filename,
@@ -26,10 +25,8 @@ class FrenchWordsController extends Controller
                 }
             );
             return response()->json($vowels, 200);
-        }
-        catch (\Exception $e)
-        {
-            return response()->json(['error'=>'Problem with servers' . $e->getMessage()], 500);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Problem with servers' . $e->getMessage()], 500);
         }
     }
 
@@ -46,15 +43,15 @@ class FrenchWordsController extends Controller
 //            return $response;
             $fileName = request('filename');
 
-            if (\App::environment(['local', 'staging'])) {
+            if (\App::environment('local')) {
                 $assetPath = Storage::disk('local')->get($fileName);
-            }else{
-                $assetPath = Storage::disk('s3')->get($fileName);
+            } else {
+            $assetPath = Storage::disk('s3')->get($fileName);
             }
 
             return response(base64_encode($assetPath), 200)
                 ->header('Content-Type', 'audio/mpeg')
-                ->header('Content-Disposition', 'attachment; filename="'.$fileName.'"')
+                ->header('Content-Disposition', 'attachment; filename="' . $fileName . '"')
                 ->header('Cache-Control', 'public');
 
         } catch (\Exception $e) {
@@ -63,7 +60,8 @@ class FrenchWordsController extends Controller
 
     }
 
-    public function getData(){
+    public function getData()
+    {
         \Artisan::call('scrape_french_info');
     }
 }

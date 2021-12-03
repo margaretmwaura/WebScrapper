@@ -187,7 +187,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/laravel-starter-serverless/dev/1638505152396-2021-12-03T04:19:12.396Z/laravel-starter-serverless.zip"
+                "S3Key": "serverless/laravel-starter-serverless/dev/1638520176085-2021-12-03T08:29:36.085Z/laravel-starter-serverless.zip"
               },
               "Handler": "public/index.php",
               "Runtime": "provided.al2",
@@ -215,7 +215,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/laravel-starter-serverless/dev/1638505152396-2021-12-03T04:19:12.396Z/laravel-starter-serverless.zip"
+                "S3Key": "serverless/laravel-starter-serverless/dev/1638520176085-2021-12-03T08:29:36.085Z/laravel-starter-serverless.zip"
               },
               "Handler": "artisan",
               "Runtime": "provided.al2",
@@ -237,24 +237,24 @@
               "ArtisanLogGroup"
             ]
           },
-          "ArtisanLambdaVersionRj5jY7aOWaZ0BC2DjNphOF4bGggpp8SIFa8IhZOE": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "ArtisanLambdaFunction"
-              },
-              "CodeSha256": "4NXjgymp2c5gYezGTItTJNMo82AzwXSlYlZuKJ5c0Bo="
-            }
-          },
-          "WebsiteLambdaVersion4w4RaNPRJiWWf0MlAWMu9MnGug50VWzAKvRQY1T8fQk": {
+          "WebsiteLambdaVersionB4XzkkoP87LQdZjwfA4WscMUfb3PAHKR52w9AkVByY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "WebsiteLambdaFunction"
               },
-              "CodeSha256": "4NXjgymp2c5gYezGTItTJNMo82AzwXSlYlZuKJ5c0Bo="
+              "CodeSha256": "zzhAXr+8qMMAO7n1zhrfxE2JWLDCt/pqIVmPG0b9LJw="
+            }
+          },
+          "ArtisanLambdaVersionPiyRkqQvnhPO5Oer5MBKm2vjvpo5b6n3VKJnhB6k": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "ArtisanLambdaFunction"
+              },
+              "CodeSha256": "zzhAXr+8qMMAO7n1zhrfxE2JWLDCt/pqIVmPG0b9LJw="
             }
           },
           "ApiGatewayRestApi": {
@@ -382,7 +382,7 @@
               "WebsiteLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1638504962898": {
+          "ApiGatewayDeployment1638519984978": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -442,22 +442,22 @@
               "Name": "sls-laravel-starter-serverless-dev-ServerlessDeploymentBucketName"
             }
           },
-          "ArtisanLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "ArtisanLambdaVersionRj5jY7aOWaZ0BC2DjNphOF4bGggpp8SIFa8IhZOE"
-            },
-            "Export": {
-              "Name": "sls-laravel-starter-serverless-dev-ArtisanLambdaFunctionQualifiedArn"
-            }
-          },
           "WebsiteLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "WebsiteLambdaVersion4w4RaNPRJiWWf0MlAWMu9MnGug50VWzAKvRQY1T8fQk"
+              "Ref": "WebsiteLambdaVersionB4XzkkoP87LQdZjwfA4WscMUfb3PAHKR52w9AkVByY"
             },
             "Export": {
               "Name": "sls-laravel-starter-serverless-dev-WebsiteLambdaFunctionQualifiedArn"
+            }
+          },
+          "ArtisanLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "ArtisanLambdaVersionPiyRkqQvnhPO5Oer5MBKm2vjvpo5b6n3VKJnhB6k"
+            },
+            "Export": {
+              "Name": "sls-laravel-starter-serverless-dev-ArtisanLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -599,7 +599,7 @@
         "memory": 1024,
         "runtime": "provided.al2",
         "vpc": {},
-        "versionLogicalId": "WebsiteLambdaVersion4w4RaNPRJiWWf0MlAWMu9MnGug50VWzAKvRQY1T8fQk"
+        "versionLogicalId": "WebsiteLambdaVersionB4XzkkoP87LQdZjwfA4WscMUfb3PAHKR52w9AkVByY"
       },
       "artisan": {
         "handler": "artisan",
@@ -613,7 +613,7 @@
         "memory": 1024,
         "runtime": "provided.al2",
         "vpc": {},
-        "versionLogicalId": "ArtisanLambdaVersionRj5jY7aOWaZ0BC2DjNphOF4bGggpp8SIFa8IhZOE"
+        "versionLogicalId": "ArtisanLambdaVersionPiyRkqQvnhPO5Oer5MBKm2vjvpo5b6n3VKJnhB6k"
       }
     },
     "configValidationMode": "warn",
@@ -637,7 +637,7 @@
           "tests/**"
         ],
         "artifact": "/Users/margaretmwaura/Projects/WebScrapper/.serverless/laravel-starter-serverless.zip",
-        "artifactDirectoryName": "serverless/laravel-starter-serverless/dev/1638505152396-2021-12-03T04:19:12.396Z"
+        "artifactDirectoryName": "serverless/laravel-starter-serverless/dev/1638520176085-2021-12-03T08:29:36.085Z"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -648,7 +648,7 @@
     "artifact": "/Users/margaretmwaura/Projects/WebScrapper/.serverless/laravel-starter-serverless.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/laravel-starter-serverless/dev/1638505152396-2021-12-03T04:19:12.396Z",
+    "artifactDirectoryName": "serverless/laravel-starter-serverless/dev/1638520176085-2021-12-03T08:29:36.085Z",
     "artifact": "laravel-starter-serverless.zip"
   }
 }
